@@ -6,6 +6,7 @@ import db from "@/db";
 import { authorizeUserToEditArticle } from "@/db/authz";
 import { articles } from "@/db/schema";
 import { stackServerApp } from "@/stack/server";
+import redis from "@/cache";
 
 // Server actions for articles (stubs)
 
@@ -35,7 +36,10 @@ export async function createArticle(data: CreateArticleInput) {
     slug: `${Date.now()}`,
     published: true,
     authorId: user.id,
+    imageUrl: data.imageUrl ?? undefined,
   });
+
+  await redis.del("articles:all");
 
   return { success: true, message: "Article create logged (stub)" };
 }
@@ -58,6 +62,7 @@ export async function updateArticle(id: string, data: UpdateArticleInput) {
       .set({
         title: data.title,
         content: data.content,
+        imageUrl: data.imageUrl ?? undefined,
       })
       .where(eq(articles.id, +id));
   } catch (e) {
