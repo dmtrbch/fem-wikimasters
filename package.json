@@ -17,10 +17,12 @@
     "@neondatabase/serverless": "^1.0.2",
     "@radix-ui/react-navigation-menu": "^1.2.14",
     "@radix-ui/react-slot": "^1.2.4",
+    "@react-email/render": "^1.4.0",
     "@stackframe/stack": "^2.8.54",
     "@uiw/react-md-editor": "^4.0.8",
     "@upstash/redis": "^1.35.7",
     "@vercel/blob": "^2.0.0",
+    "ai": "^5.0.108",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.3",
@@ -30,6 +32,7 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-markdown": "^10.1.0",
+    "resend": "^6.5.2",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

@@ -1,14 +1,14 @@
 "use client";
 
 import { Calendar, ChevronRight, Edit, Eye, Home, User } from "lucide-react";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import { incrementPageview } from "@/app/actions/pageViews";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { incrementPageview } from "@/app/actions/pageViews";
 
 interface ViewerArticle {
   title: string;
