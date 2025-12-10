@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/playwright/.auth
+/playwright-report
+/test-results
 
 # next.js
 /.next/
@@ -46,4 +49,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.llm-notes/
+.llm-notes/.env.test.local
+.env.test.local
+.test-branch-info.json
+.test-server-pid.json
+test/playwright/.auth*
