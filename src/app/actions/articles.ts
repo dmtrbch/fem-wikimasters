@@ -33,16 +33,18 @@ export async function createArticle(data: CreateArticleInput) {
 
   const summary = await summarizeArticle(data.title || "", data.content || "");
 
-  const response =await db.insert(articles).values({
-    title: data.title,
-    content: data.content,
-    slug: `${Date.now()}`,
-    published: true,
-    authorId: user.id,
-    imageUrl: data.imageUrl ?? undefined,
-    summary,
-  })
-  .returning({ id: articles.id });
+  const response = await db
+    .insert(articles)
+    .values({
+      title: data.title,
+      content: data.content,
+      slug: `${Date.now()}`,
+      published: true,
+      authorId: user.id,
+      imageUrl: data.imageUrl ?? undefined,
+      summary,
+    })
+    .returning({ id: articles.id });
 
   await redis.del("articles:all");
 
