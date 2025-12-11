@@ -44,3 +44,4 @@ export default function RootLayout({
     </html>
   );
 }
+// added analytics and speed insights
