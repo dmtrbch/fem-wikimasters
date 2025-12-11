@@ -33,7 +33,7 @@ export async function createArticle(data: CreateArticleInput) {
 
   const summary = await summarizeArticle(data.title || "", data.content || "");
 
-  await db.insert(articles).values({
+  const response =await db.insert(articles).values({
     title: data.title,
     content: data.content,
     slug: `${Date.now()}`,
@@ -41,11 +41,13 @@ export async function createArticle(data: CreateArticleInput) {
     authorId: user.id,
     imageUrl: data.imageUrl ?? undefined,
     summary,
-  });
+  })
+  .returning({ id: articles.id });
 
   await redis.del("articles:all");
 
-  return { success: true, message: "Article create logged (stub)" };
+  const articleId = response[0]?.id;
+  return { success: true, message: "Article create logged", id: articleId };
 }
 
 export async function updateArticle(id: string, data: UpdateArticleInput) {
@@ -78,7 +80,7 @@ export async function updateArticle(id: string, data: UpdateArticleInput) {
     // send this to observability platform
   }
 
-  return { success: true, message: `Article ${id} update logged (stub)` };
+  return { success: true, message: `Article ${id} update logged` };
 }
 
 export async function deleteArticle(id: string) {
@@ -95,7 +97,7 @@ export async function deleteArticle(id: string) {
 
   await db.delete(articles).where(eq(articles.id, +id));
 
-  return { success: true, message: `Article ${id} delete logged (stub)` };
+  return { success: true, message: `Article ${id} delete logged` };
 }
 
 // Form-friendly server action: accepts FormData from a client form and calls deleteArticle

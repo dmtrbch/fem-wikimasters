@@ -68,7 +68,8 @@ describe("Article Actions", () => {
 
       expect(result).toEqual({
         success: true,
-        message: "Article create logged (stub)",
+        message: "Article create logged",
+        id: 1,
       });
       expect(db.insert).toHaveBeenCalledWith(articles);
       expect(redis.del).toHaveBeenCalledWith("articles:all");
@@ -104,7 +105,8 @@ describe("Article Actions", () => {
 
       expect(result).toEqual({
         success: true,
-        message: "Article create logged (stub)",
+        message: "Article create logged",
+        id: 1,
       });
       expect(db.insert).toHaveBeenCalledWith(articles);
     });
@@ -137,7 +139,7 @@ describe("Article Actions", () => {
 
       expect(result).toEqual({
         success: true,
-        message: "Article 1 update logged (stub)",
+        message: "Article 1 update logged",
       });
       expect(authz.authorizeUserToEditArticle).toHaveBeenCalledWith(
         mockUser.id,
@@ -182,7 +184,7 @@ describe("Article Actions", () => {
 
       expect(result).toEqual({
         success: true,
-        message: "Article 1 delete logged (stub)",
+        message: "Article 1 delete logged",
       });
       expect(authz.authorizeUserToEditArticle).toHaveBeenCalledWith(
         mockUser.id,
