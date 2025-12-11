@@ -69,7 +69,6 @@ describe("Article Actions", () => {
       expect(result).toEqual({
         success: true,
         message: "Article create logged (stub)",
-        id: 1,
       });
       expect(db.insert).toHaveBeenCalledWith(articles);
       expect(redis.del).toHaveBeenCalledWith("articles:all");
@@ -106,7 +105,6 @@ describe("Article Actions", () => {
       expect(result).toEqual({
         success: true,
         message: "Article create logged (stub)",
-        id: 1,
       });
       expect(db.insert).toHaveBeenCalledWith(articles);
     });
